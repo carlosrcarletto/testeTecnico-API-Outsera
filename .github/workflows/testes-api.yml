@@ -1,0 +1,47 @@
+name: Testes de API
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  testes:
+    name: Testes ${{ matrix.suite }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false # um tipo de teste falhando não interrompe o outro
+      matrix:
+        suite: [positivos, negativos]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      # Testes de API não usam navegador, então não é preciso "playwright install"
+      - name: Executar testes ${{ matrix.suite }}
+        run: npm run test:${{ matrix.suite }}
+
+      - name: Publicar resumo no GitHub
+        if: always()
+        run: |
+          if [ -f relatorio/RELATORIO.md ]; then
+            cat relatorio/RELATORIO.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Salvar relatórios
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-${{ matrix.suite }}
+          path: relatorio/
+          retention-days: 14
