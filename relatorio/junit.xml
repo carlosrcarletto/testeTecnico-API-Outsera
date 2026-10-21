@@ -1,0 +1,239 @@
+<testsuites id="" name="" tests="100" failures="0" skipped="0" errors="0" time="3.436752">
+<testsuite name="01-login.spec.js" timestamp="2026-10-21T19:03:44.626Z" hostname="local" tests="10" failures="0" skipped="0" time="0.614" errors="0">
+<testcase name="POST /login › deve autenticar com credenciais válidas e retornar token Bearer" classname="01-login.spec.js" time="0.124">
+</testcase>
+<testcase name="POST /login › deve recusar senha incorreta com 401" classname="01-login.spec.js" time="0.1">
+</testcase>
+<testcase name="POST /login › deve recusar e-mail não cadastrado com 401" classname="01-login.spec.js" time="0.069">
+</testcase>
+<testcase name="POST /login › deve exigir e-mail e senha quando o corpo está vazio" classname="01-login.spec.js" time="0.076">
+</testcase>
+<testcase name="POST /login › deve recusar login sem o campo &quot;email&quot;" classname="01-login.spec.js" time="0.059">
+</testcase>
+<testcase name="POST /login › deve recusar login sem o campo &quot;password&quot;" classname="01-login.spec.js" time="0.034">
+</testcase>
+<testcase name="POST /login › deve recusar e-mail em formato inválido" classname="01-login.spec.js" time="0.028">
+</testcase>
+<testcase name="POST /login › deve recusar senha em branco" classname="01-login.spec.js" time="0.054">
+</testcase>
+<testcase name="POST /login › deve recusar campos não previstos no contrato" classname="01-login.spec.js" time="0.052">
+</testcase>
+<testcase name="POST /login › deve recusar payload JSON malformado" classname="01-login.spec.js" time="0.018">
+<properties>
+<property name="observacao" value="Em erros de JSON malformado a resposta não traz os headers de segurança (X-Content-Type-Options, X-Frame-Options, CORS) presentes nas demais respostas. O erro é tratado antes do middleware de segurança.">
+</property>
+</properties>
+</testcase>
+</testsuite>
+<testsuite name="02-usuarios.spec.js" timestamp="2026-10-21T19:03:44.626Z" hostname="local" tests="28" failures="0" skipped="0" time="0.782" errors="0">
+<testcase name="GET /usuarios › deve listar usuários com quantidade coerente com a lista" classname="02-usuarios.spec.js" time="0.054">
+</testcase>
+<testcase name="GET /usuarios › deve filtrar usuários por e-mail via query string" classname="02-usuarios.spec.js" time="0.085">
+</testcase>
+<testcase name="GET /usuarios › deve recusar parâmetro de busca não suportado" classname="02-usuarios.spec.js" time="0.061">
+</testcase>
+<testcase name="GET /usuarios/{_id} › deve retornar o usuário com os dados cadastrados" classname="02-usuarios.spec.js" time="0.081">
+</testcase>
+<testcase name="GET /usuarios/{_id} › deve informar usuário não encontrado para ID inexistente" classname="02-usuarios.spec.js" time="0.008">
+<properties>
+<property name="observacao" value="Recurso inexistente retorna 400 (Bad Request) em vez de 404 (Not Found), o que dificulta para o cliente distinguir requisição inválida de recurso ausente. O mesmo ocorre em /produtos e /carrinhos.">
+</property>
+</properties>
+</testcase>
+<testcase name="GET /usuarios/{_id} › deve validar o formato do ID" classname="02-usuarios.spec.js" time="0.008">
+</testcase>
+<testcase name="POST /usuarios › deve cadastrar usuário com administrador=&quot;true&quot;" classname="02-usuarios.spec.js" time="0.02">
+</testcase>
+<testcase name="POST /usuarios › deve cadastrar usuário com administrador=&quot;false&quot;" classname="02-usuarios.spec.js" time="0.024">
+</testcase>
+<testcase name="POST /usuarios › deve recusar e-mail já cadastrado" classname="02-usuarios.spec.js" time="0.024">
+</testcase>
+<testcase name="POST /usuarios › deve listar todos os campos obrigatórios quando o corpo está vazio" classname="02-usuarios.spec.js" time="0.012">
+</testcase>
+<testcase name="POST /usuarios › deve recusar cadastro sem o campo &quot;nome&quot;" classname="02-usuarios.spec.js" time="0.012">
+</testcase>
+<testcase name="POST /usuarios › deve recusar cadastro sem o campo &quot;email&quot;" classname="02-usuarios.spec.js" time="0.013">
+</testcase>
+<testcase name="POST /usuarios › deve recusar cadastro sem o campo &quot;password&quot;" classname="02-usuarios.spec.js" time="0.015">
+</testcase>
+<testcase name="POST /usuarios › deve recusar cadastro sem o campo &quot;administrador&quot;" classname="02-usuarios.spec.js" time="0.028">
+</testcase>
+<testcase name="POST /usuarios › deve recusar valor inválido em &quot;email&quot; (&quot;fulano.com&quot;)" classname="02-usuarios.spec.js" time="0.015">
+</testcase>
+<testcase name="POST /usuarios › deve recusar valor inválido em &quot;administrador&quot; (&quot;sim&quot;)" classname="02-usuarios.spec.js" time="0.017">
+</testcase>
+<testcase name="POST /usuarios › deve recusar valor inválido em &quot;nome&quot; (123)" classname="02-usuarios.spec.js" time="0.014">
+</testcase>
+<testcase name="POST /usuarios › deve recusar valor inválido em &quot;password&quot; (&quot;&quot;)" classname="02-usuarios.spec.js" time="0.008">
+</testcase>
+<testcase name="POST /usuarios › deve recusar campos não previstos no contrato" classname="02-usuarios.spec.js" time="0.009">
+</testcase>
+<testcase name="POST /usuarios › deve recusar payload JSON malformado" classname="02-usuarios.spec.js" time="0.014">
+</testcase>
+<testcase name="PUT /usuarios/{_id} › deve alterar todos os dados de um usuário existente" classname="02-usuarios.spec.js" time="0.031">
+</testcase>
+<testcase name="PUT /usuarios/{_id} › deve cadastrar novo usuário quando o ID não existe (upsert)" classname="02-usuarios.spec.js" time="0.02">
+<properties>
+<property name="observacao" value="PUT em ID inexistente cria um usuário com um ID novo, gerado pela API, e não com o ID informado na URL. Em um upsert idempotente o recurso seria criado no endereço solicitado.">
+</property>
+</properties>
+</testcase>
+<testcase name="PUT /usuarios/{_id} › deve recusar alteração para e-mail de outro usuário" classname="02-usuarios.spec.js" time="0.038">
+</testcase>
+<testcase name="PUT /usuarios/{_id} › deve recusar payload incompleto (PUT exige o recurso completo)" classname="02-usuarios.spec.js" time="0.027">
+</testcase>
+<testcase name="PUT /usuarios/{_id} › deve recusar payload JSON malformado" classname="02-usuarios.spec.js" time="0.023">
+</testcase>
+<testcase name="DELETE /usuarios/{_id} › deve excluir o usuário e ele deixar de existir" classname="02-usuarios.spec.js" time="0.016">
+</testcase>
+<testcase name="DELETE /usuarios/{_id} › deve informar que nenhum registro foi excluído para ID inexistente" classname="02-usuarios.spec.js" time="0.017">
+<properties>
+<property name="observacao" value="DELETE de ID inexistente retorna 200 com &quot;Nenhum registro excluído&quot;. É um comportamento documentado da ServeRest, mas 404 seria mais informativo. O mesmo ocorre em /produtos.">
+</property>
+</properties>
+</testcase>
+<testcase name="DELETE /usuarios/{_id} › deve impedir a exclusão de usuário com carrinho cadastrado" classname="02-usuarios.spec.js" time="0.088">
+</testcase>
+</testsuite>
+<testsuite name="03-produtos.spec.js" timestamp="2026-10-21T19:03:44.626Z" hostname="local" tests="33" failures="0" skipped="0" time="1.18" errors="0">
+<testcase name="GET /produtos › deve listar produtos sem exigir autenticação" classname="03-produtos.spec.js" time="0.061">
+</testcase>
+<testcase name="GET /produtos › deve filtrar produtos por nome" classname="03-produtos.spec.js" time="0.059">
+</testcase>
+<testcase name="GET /produtos/{_id} › deve retornar o produto cadastrado" classname="03-produtos.spec.js" time="0.043">
+</testcase>
+<testcase name="GET /produtos/{_id} › deve informar produto não encontrado para ID inexistente" classname="03-produtos.spec.js" time="0.014">
+</testcase>
+<testcase name="POST /produtos › deve cadastrar produto com usuário administrador" classname="03-produtos.spec.js" time="0.032">
+</testcase>
+<testcase name="POST /produtos › deve recusar cadastro sem token (401)" classname="03-produtos.spec.js" time="0.037">
+</testcase>
+<testcase name="POST /produtos › deve recusar cadastro com token inválido (401)" classname="03-produtos.spec.js" time="0.035">
+</testcase>
+<testcase name="POST /produtos › deve recusar cadastro com token sem o prefixo Bearer (401)" classname="03-produtos.spec.js" time="0.034">
+</testcase>
+<testcase name="POST /produtos › deve recusar cadastro de usuário não administrador (403)" classname="03-produtos.spec.js" time="0.039">
+</testcase>
+<testcase name="POST /produtos › deve recusar nome de produto já existente" classname="03-produtos.spec.js" time="0.03">
+</testcase>
+<testcase name="POST /produtos › deve listar todos os campos obrigatórios quando o corpo está vazio" classname="03-produtos.spec.js" time="0.015">
+</testcase>
+<testcase name="POST /produtos › deve recusar valor inválido em &quot;preco&quot; (-10)" classname="03-produtos.spec.js" time="0.017">
+</testcase>
+<testcase name="POST /produtos › deve recusar valor inválido em &quot;preco&quot; (0)" classname="03-produtos.spec.js" time="0.028">
+</testcase>
+<testcase name="POST /produtos › deve recusar valor inválido em &quot;preco&quot; (10.5)" classname="03-produtos.spec.js" time="0.023">
+</testcase>
+<testcase name="POST /produtos › deve recusar valor inválido em &quot;quantidade&quot; (-1)" classname="03-produtos.spec.js" time="0.026">
+</testcase>
+<testcase name="POST /produtos › deve recusar valor inválido em &quot;nome&quot; (&quot;&quot;)" classname="03-produtos.spec.js" time="0.025">
+</testcase>
+<testcase name="POST /produtos › deve recusar valor inválido em &quot;descricao&quot; (42)" classname="03-produtos.spec.js" time="0.021">
+</testcase>
+<testcase name="POST /produtos › deve recusar payload JSON malformado" classname="03-produtos.spec.js" time="0.022">
+</testcase>
+<testcase name="POST /produtos › [DEFEITO] deve recusar preço enviado como texto" classname="03-produtos.spec.js" time="0.03">
+<properties>
+<property name="defeito" value="A API aceita &quot;preco&quot;: &quot;150&quot; (string) e cadastra o produto, embora o contrato exija número. Marcado com test.fail(): o teste passa enquanto o defeito existir e passa a falhar quando for corrigido.">
+</property>
+<property name="fail" value="">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/03-produtos-POST-produtos--cf8c9-ar-preço-enviado-como-texto-local/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="PUT /produtos/{_id} › deve alterar um produto existente" classname="03-produtos.spec.js" time="0.034">
+</testcase>
+<testcase name="PUT /produtos/{_id} › deve recusar alteração sem token (401)" classname="03-produtos.spec.js" time="0.039">
+</testcase>
+<testcase name="PUT /produtos/{_id} › deve recusar alteração com token inválido (401)" classname="03-produtos.spec.js" time="0.041">
+</testcase>
+<testcase name="PUT /produtos/{_id} › deve recusar alteração com token sem o prefixo Bearer (401)" classname="03-produtos.spec.js" time="0.048">
+</testcase>
+<testcase name="PUT /produtos/{_id} › deve recusar alteração de usuário não administrador (403)" classname="03-produtos.spec.js" time="0.041">
+</testcase>
+<testcase name="PUT /produtos/{_id} › deve recusar alteração para nome de outro produto" classname="03-produtos.spec.js" time="0.05">
+</testcase>
+<testcase name="PUT /produtos/{_id} › deve recusar payload incompleto" classname="03-produtos.spec.js" time="0.031">
+</testcase>
+<testcase name="DELETE /produtos/{_id} › deve excluir o produto e ele deixar de existir" classname="03-produtos.spec.js" time="0.032">
+</testcase>
+<testcase name="DELETE /produtos/{_id} › deve informar que nenhum registro foi excluído para ID inexistente" classname="03-produtos.spec.js" time="0.033">
+</testcase>
+<testcase name="DELETE /produtos/{_id} › deve recusar exclusão sem token (401)" classname="03-produtos.spec.js" time="0.045">
+</testcase>
+<testcase name="DELETE /produtos/{_id} › deve recusar exclusão com token inválido (401)" classname="03-produtos.spec.js" time="0.044">
+</testcase>
+<testcase name="DELETE /produtos/{_id} › deve recusar exclusão com token sem o prefixo Bearer (401)" classname="03-produtos.spec.js" time="0.044">
+</testcase>
+<testcase name="DELETE /produtos/{_id} › deve recusar exclusão de usuário não administrador (403)" classname="03-produtos.spec.js" time="0.047">
+</testcase>
+<testcase name="DELETE /produtos/{_id} › deve impedir a exclusão de produto que está em um carrinho" classname="03-produtos.spec.js" time="0.06">
+</testcase>
+</testsuite>
+<testsuite name="04-carrinhos.spec.js" timestamp="2026-10-21T19:03:44.626Z" hostname="local" tests="13" failures="0" skipped="0" time="0.409" errors="0">
+<testcase name="POST /carrinhos › deve criar carrinho e baixar o estoque do produto" classname="04-carrinhos.spec.js" time="0.061">
+</testcase>
+<testcase name="POST /carrinhos › deve recusar um segundo carrinho para o mesmo usuário" classname="04-carrinhos.spec.js" time="0.061">
+</testcase>
+<testcase name="POST /carrinhos › deve recusar produto inexistente" classname="04-carrinhos.spec.js" time="0.027">
+</testcase>
+<testcase name="POST /carrinhos › deve recusar quantidade maior que o estoque" classname="04-carrinhos.spec.js" time="0.039">
+</testcase>
+<testcase name="POST /carrinhos › deve recusar produto duplicado na lista" classname="04-carrinhos.spec.js" time="0.03">
+</testcase>
+<testcase name="POST /carrinhos › deve recusar lista de produtos vazia" classname="04-carrinhos.spec.js" time="0.019">
+</testcase>
+<testcase name="POST /carrinhos › deve exigir autenticação" classname="04-carrinhos.spec.js" time="0.007">
+</testcase>
+<testcase name="GET /carrinhos/{_id} › deve retornar o carrinho com totais calculados" classname="04-carrinhos.spec.js" time="0.046">
+</testcase>
+<testcase name="GET /carrinhos/{_id} › deve informar carrinho não encontrado" classname="04-carrinhos.spec.js" time="0.009">
+</testcase>
+<testcase name="DELETE /carrinhos/cancelar-compra › deve excluir o carrinho e devolver o estoque" classname="04-carrinhos.spec.js" time="0.042">
+</testcase>
+<testcase name="DELETE /carrinhos/cancelar-compra › deve informar quando o usuário não tem carrinho" classname="04-carrinhos.spec.js" time="0.025">
+</testcase>
+<testcase name="DELETE /carrinhos/concluir-compra › deve concluir a compra sem devolver o estoque" classname="04-carrinhos.spec.js" time="0.035">
+</testcase>
+<testcase name="DELETE /carrinhos/concluir-compra › deve exigir autenticação" classname="04-carrinhos.spec.js" time="0.008">
+</testcase>
+</testsuite>
+<testsuite name="05-metodos-invalidos.spec.js" timestamp="2026-10-21T19:03:44.626Z" hostname="local" tests="16" failures="0" skipped="0" time="0.126" errors="0">
+<testcase name="Métodos HTTP não suportados › PATCH /usuarios deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.01">
+</testcase>
+<testcase name="Métodos HTTP não suportados › PUT /usuarios deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.012">
+</testcase>
+<testcase name="Métodos HTTP não suportados › DELETE /usuarios deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.012">
+</testcase>
+<testcase name="Métodos HTTP não suportados › POST /usuarios/ZZZZZZZZZZZZZZZZ deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.013">
+</testcase>
+<testcase name="Métodos HTTP não suportados › PATCH /usuarios/ZZZZZZZZZZZZZZZZ deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.009">
+</testcase>
+<testcase name="Métodos HTTP não suportados › GET /login deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.008">
+</testcase>
+<testcase name="Métodos HTTP não suportados › PUT /login deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.008">
+</testcase>
+<testcase name="Métodos HTTP não suportados › DELETE /login deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.005">
+</testcase>
+<testcase name="Métodos HTTP não suportados › PATCH /login deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.005">
+</testcase>
+<testcase name="Métodos HTTP não suportados › PATCH /produtos deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.006">
+</testcase>
+<testcase name="Métodos HTTP não suportados › PUT /produtos deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.006">
+</testcase>
+<testcase name="Métodos HTTP não suportados › DELETE /produtos deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.006">
+</testcase>
+<testcase name="Métodos HTTP não suportados › POST /produtos/ZZZZZZZZZZZZZZZZ deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.005">
+</testcase>
+<testcase name="Métodos HTTP não suportados › PUT /carrinhos/ZZZZZZZZZZZZZZZZ deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.008">
+</testcase>
+<testcase name="Métodos HTTP não suportados › PATCH /carrinhos deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.006">
+</testcase>
+<testcase name="Métodos HTTP não suportados › POST /carrinhos/ZZZZZZZZZZZZZZZZ deve retornar 405" classname="05-metodos-invalidos.spec.js" time="0.007">
+</testcase>
+</testsuite>
+</testsuites>
