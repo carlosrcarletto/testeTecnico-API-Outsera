@@ -13,13 +13,13 @@ npm test
 
 O `npm test` sobe automaticamente uma instância **local** da ServeRest (porta 3000) antes dos testes. Assim a execução não depende de internet nem é afetada por dados que outras pessoas criam no servidor público.
 
-| Comando | O que faz |
-|---|---|
-| `npm test` | Executa todos os testes contra a ServeRest local |
-| `npm run test:positivos` | Apenas cenários positivos (tag `@positivo`) |
-| `npm run test:negativos` | Apenas cenários negativos (tag `@negativo`) |
-| `npm run test:remoto` | Executa contra o servidor público `https://serverest.dev` |
-| `npm run relatorio` | Abre o relatório HTML da última execução |
+| Comando                  | O que faz                                                 |
+| ------------------------ | --------------------------------------------------------- |
+| `npm test`               | Executa todos os testes contra a ServeRest local          |
+| `npm run test:positivos` | Apenas cenários positivos (tag `@positivo`)               |
+| `npm run test:negativos` | Apenas cenários negativos (tag `@negativo`)               |
+| `npm run test:remoto`    | Executa contra o servidor público `https://serverest.dev` |
+| `npm run relatorio`      | Abre o relatório HTML da última execução                  |
 
 ## Relatórios gerados
 
@@ -71,9 +71,11 @@ A pasta `relatorio/` deste pacote já contém os relatórios de uma execução r
 ## Resultados e análise
 
 Defeito encontrado:
+
 - `POST /produtos` aceita `"preco": "150"` (texto) e cadastra o produto, embora o contrato exija número. Os demais valores inválidos de preço são recusados corretamente.
 
 Observações de design da API (comportamentos documentados, mas questionáveis em relação às convenções REST):
+
 - Recurso inexistente retorna **400** em vez de **404**.
 - `DELETE` de ID inexistente retorna **200** ("Nenhum registro excluído").
 - `PUT` em ID inexistente cria o recurso com **outro ID**, gerado pela API, e não com o informado na URL.
